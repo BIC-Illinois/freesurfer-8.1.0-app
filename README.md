@@ -22,7 +22,7 @@ apptainer run -B /path/to/your/data:/datain freesurfer-v8.1.0.sif <Freesurfer co
 ### Recon-all-clinical:
 
 ```sh
-recon-all-clinical.sh INPUT_SCAN SUBJECT_ID THREADS [SUBJECT_DIR]
+apptainer run -B /path/to/your/data:/datain freesurfer-v8.1.0.sif recon-all-clinical.sh INPUT_SCAN SUBJECT_ID THREADS [SUBJECT_DIR]
 ```
 
 - INPUT_SCAN: path to an image that will be processed.

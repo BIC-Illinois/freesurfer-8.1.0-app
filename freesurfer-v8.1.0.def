@@ -1,0 +1,24 @@
+Bootstrap: docker
+From: vnmd/freesurfer:8.0.0
+
+# Copy FreeSurfer license
+%files
+./license.txt /usr/local/freesurfer/.license
+
+%post 
+# To support (hippocampus and) amygdala subnuclei segmentation
+# cd $FREESURFER_HOME/bin && curl https://raw.githubusercontent.com/freesurfer/freesurfer/dev/scripts/fs_install_mcr -o fs_install_mcr && chmod +x fs_install_mcr
+# fs_install_mcr R2019b
+# To support hypothalamic subunits segmentation
+# yum install python3-pip && pip3 install -U tensorflow-cpu
+
+cd /opt && curl https://surfer.nmr.mgh.harvard.edu/pub/dist/freesurfer/8.1.0/freesurfer-CentOS7-8.1.0-1.x86_64.rpm -o freesurfer-CentOS7-8.1.0-1.x86_64.rpm && yum localinstall -y freesurfer-CentOS7-8.1.0-1.x86_64.rpm
+
+# Install  libGLU.so.1
+yum install -y mesa-libGLU-devel mesa-libGL-devel
+
+# Install ImageMagik convert
+yum -y groupinstall 'Development Tools'
+yum -y install bzip2-devel freetype-devel libjpeg-devel libpng-devel libtiff-devel zlib-devel libtool-ltdl-devel libX11-devel libXext-devel libXt-devel libxml2-devel librsvg2-devel php-devel
+mkdir /opt/ImageMagick && cd /opt/ImageMagick && wget https://www.imagemagick.org/download/ImageMagick.tar.gz && tar -xvzf ImageMagick.tar.gz && cd ImageMagick-7.1.2-3 && ./configure && make && make install
+dnf install -y xorg-x11-server-Xvfb

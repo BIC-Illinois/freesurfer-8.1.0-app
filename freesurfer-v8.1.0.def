@@ -10,15 +10,19 @@ From: vnmd/freesurfer:8.0.0
 # cd $FREESURFER_HOME/bin && curl https://raw.githubusercontent.com/freesurfer/freesurfer/dev/scripts/fs_install_mcr -o fs_install_mcr && chmod +x fs_install_mcr
 # fs_install_mcr R2019b
 # To support hypothalamic subunits segmentation
-# yum install python3-pip && pip3 install -U tensorflow-cpu
+# apt-get install python3-pip && pip3 install -U tensorflow-cpu
 
-cd /opt && curl https://surfer.nmr.mgh.harvard.edu/pub/dist/freesurfer/8.1.0/freesurfer-CentOS7-8.1.0-1.x86_64.rpm -o freesurfer-CentOS7-8.1.0-1.x86_64.rpm && yum localinstall -y freesurfer-CentOS7-8.1.0-1.x86_64.rpm
+cd /opt && curl https://surfer.nmr.mgh.harvard.edu/pub/dist/freesurfer/8.1.0/freesurfer_ubuntu22-8.1.0_amd64.deb -o freesurfer_ubuntu22-8.1.0_amd64.deb && apt-get install -y ./freesurfer_ubuntu22-8.1.0_amd64.deb
 
 # Install  libGLU.so.1
-yum install -y mesa-libGLU-devel mesa-libGL-devel
+apt-get update && apt-get install -y libglu1-mesa libgl1-mesa-dev
 
-# Install ImageMagik convert
-yum -y groupinstall 'Development Tools'
-yum -y install bzip2-devel freetype-devel libjpeg-devel libpng-devel libtiff-devel zlib-devel libtool-ltdl-devel libX11-devel libXext-devel libXt-devel libxml2-devel librsvg2-devel php-devel
+# Install ImageMagick convert and dependencies
+apt-get install -y build-essential \
+    bzip2 libfreetype6-dev libjpeg-dev libpng-dev libtiff-dev zlib1g-dev \
+    libtool libx11-dev libxext-dev libxt-dev libxml2-dev librsvg2-dev \
+    php-dev
+
 mkdir /opt/ImageMagick && cd /opt/ImageMagick && wget https://www.imagemagick.org/download/ImageMagick.tar.gz && tar -xvzf ImageMagick.tar.gz && cd ImageMagick-7.1.2-3 && ./configure && make && make install
-dnf install -y xorg-x11-server-Xvfb
+
+apt-get install -y xvfb

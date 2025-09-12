@@ -3,7 +3,7 @@ From: vnmd/freesurfer:8.0.0
 
 # Copy FreeSurfer license
 %files
-./license.txt /usr/local/freesurfer/.license
+./license.txt /opt/freesurfer-8.0.0/.license
 
 %post 
 # To support (hippocampus and) amygdala subnuclei segmentation
@@ -26,3 +26,10 @@ apt-get install -y build-essential \
 mkdir /opt/ImageMagick && cd /opt/ImageMagick && wget https://www.imagemagick.org/download/ImageMagick.tar.gz && tar -xvzf ImageMagick.tar.gz && cd ImageMagick-7.1.2-3 && ./configure && make && make install
 
 apt-get install -y xvfb
+
+# Add Freesurfer setup to .bashrc
+echo "export FREESURFER_HOME=/usr/local/freesurfer/8.1.0" >> /etc/bash.bashrc
+echo "export PATH=$FREESURFER_HOME/bin:$PATH" >> /etc/bash.bashrc
+echo "export SUBJECTS_DIR=$FREESURFER_HOME/subjects" >> /etc/bash.bashrc
+echo "export FS_LICENSE_FILE=$FREESURFER_HOME/.license" >> /etc/bash.bashrc
+echo "source $FREESURFER_HOME/SetUpFreeSurfer.sh" >> /etc/bash.bashrc

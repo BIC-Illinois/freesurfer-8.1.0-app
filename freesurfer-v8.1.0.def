@@ -3,8 +3,8 @@ From: vnmd/freesurfer:8.0.0
 
 # Copy FreeSurfer license
 %files
-./license.txt /usr/freesurfer/8.1.0/.license
-./recon-all-clinical.sh /usr/freesurfer/8.1.0/recon-all-clinical.sh
+./license.txt /usr/local/freesurfer/8.1.0/.license
+./recon-all-clinical.sh /usr/local/freesurfer/8.1.0/recon-all-clinical.sh
 
 %post 
 # To support (hippocampus and) amygdala subnuclei segmentation

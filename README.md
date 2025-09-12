@@ -5,6 +5,8 @@ Freesurfer v8.0.0 and later contain a patched version of the [recon-all-clinical
 
 Obtain a [Freesurfer license](https://surfer.nmr.mgh.harvard.edu/fswiki/License) if you do not yet have one from the 2025 calendar year. Place a copy of this file in this repository's folder.
 
+Download a copy of the corrected [recon-all-clinical.sh script](https://github.com/freesurfer/freesurfer/blob/dev/recon_all_clinical/recon-all-clinical.sh) and place in this repository's folder.
+
 ## Build
 
 ```sh

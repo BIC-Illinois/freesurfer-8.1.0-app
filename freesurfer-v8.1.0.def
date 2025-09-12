@@ -3,7 +3,8 @@ From: vnmd/freesurfer:8.0.0
 
 # Copy FreeSurfer license
 %files
-./license.txt /opt/freesurfer-8.0.0/.license
+./license.txt /usr/freesurfer/8.1.0/.license
+./recon-all-clinical.sh /usr/freesurfer/8.1.0/recon-all-clinical.sh
 
 %post 
 # To support (hippocampus and) amygdala subnuclei segmentation
@@ -33,3 +34,27 @@ echo "export PATH=$FREESURFER_HOME/bin:$PATH" >> /etc/bash.bashrc
 echo "export SUBJECTS_DIR=$FREESURFER_HOME/subjects" >> /etc/bash.bashrc
 echo "export FS_LICENSE_FILE=$FREESURFER_HOME/.license" >> /etc/bash.bashrc
 echo "source $FREESURFER_HOME/SetUpFreeSurfer.sh" >> /etc/bash.bashrc
+
+%environment
+# Set environment variables for Freesurfer
+export FREESURFER_HOME=/usr/local/freesurfer/8.1.0
+export PATH=$FREESURFER_HOME/bin:$PATH
+export SUBJECTS_DIR=$FREESURFER_HOME/subjects
+export FS_LICENSE=$FREESURFER_HOME/.license
+export FS_LICENSE_FILE=$FREESURFER_HOME/.license
+export SUBJECTS_DIR="$FREESURFER_HOME/subjects"
+export FSF_OUTPUT_FORMAT="nii.gz"
+export MNI_DIR="$FREESURFER_HOME/mni"
+export LOCAL_DIR="$FREESURFER_HOME/local"
+export FREESURFER_HOME="$FREESURFER_HOME"
+export FSFAST_HOME="$FREESURFER_HOME/fsfast"
+export MINC_BIN_DIR="$FREESURFER_HOME/mni/bin"
+export MINC_LIB_DIR="$FREESURFER_HOME/mni/lib"
+export MNI_DATAPATH="$FREESURFER_HOME/mni/data"
+export FMRI_ANALYSIS_DIR="$FREESURFER_HOME/fsfast"
+export PERL5LIB="$FREESURFER_HOME/mni/share/perl5"
+export MNI_PERL5LIB="$FREESURFER_HOME/mni/share/perl5/"
+export PATH="$PATH:$FREESURFER_HOME/bin:$FREESURFER_HOME/fsfast/bin:$FREESURFER_HOME/tktools:$FREESURFER_HOME/mni/bin"
+
+%runscript
+bash -c "source $FREESURFER_HOME/SetUpFreeSurfer.sh &&  ${@}"

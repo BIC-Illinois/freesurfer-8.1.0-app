@@ -21,10 +21,23 @@ apptainer build freesurfer-v8.1.0.sif freesurfer-v8.1.0.def
 apptainer run -B /path/to/your/data:/datain freesurfer-v8.1.0.sif <Freesurfer commands>
 ```
 
+### SynthSR
+
+```sh
+apptainer run -B /path/to/your/data:/datain freesurfer-v8.1.0.sif mri_synthsr --i INPUT_SCAN --o OUTPUT_MPRAGE_NAME --threads THREADS --cpu
+```
+
+#### Wrapper Script
+
+This requires full paths for `INPUT_SCAN` and `OUTPUT_MPRAGE_NAME`
+```sh
+./mri_synthsr.sh --i INPUT_SCAN --o OUTPUT_MPRAGE_NAME --threads THREADS --cpu
+```
+
 ### Recon-all-clinical:
 
 ```sh
-apptainer run -B /path/to/your/data:/datain freesurfer-v8.1.0.sif /usr/local/freesurfer/8.1.0/bin/recon-all-clinical.sh -i INPUT_SCAN -subjid -threads SUBJECT_ID THREADS [-sdir SUBJECT_DIR] [-ct]
+apptainer run -B /path/to/your/data:/datain freesurfer-v8.1.0.sif /usr/local/freesurfer/8.1.0/bin/recon-all-clinical.sh -i INPUT_SCAN -subjid SUBJECT_ID -threads THREADS -sdir SUBJECT_DIR 
 ```
 
 - INPUT_SCAN: path to an image that will be processed.

@@ -10,6 +10,10 @@ Download a copy of the corrected [recon-all-clinical.sh script](https://github.c
 ## Build
 
 ```sh
+curl -L -o recon-all-clinical.sh https://raw.githubusercontent.com/freesurfer/freesurfer/dev/recon_all_clinical/recon-all-clinical.sh && chmod +x recon-all-clinical.sh
+```
+
+```sh
 apptainer build freesurfer-v8.1.0.sif freesurfer-v8.1.0.def
 ```
 

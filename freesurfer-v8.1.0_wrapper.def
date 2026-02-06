@@ -1,0 +1,8 @@
+Bootstrap: docker
+From: freesurfer/freesurfer:8.1.0
+
+%files
+	./license.txt /usr/local/freesurfer/8.1.0/.license
+
+%runscript
+	bash -c "source $FREESURFER_HOME/SetUpFreeSurfer.sh &&  ${@}"

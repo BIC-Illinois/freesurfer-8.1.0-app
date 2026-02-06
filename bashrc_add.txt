@@ -1,0 +1,1 @@
+alias freesurfer="/home/`whoami`/scripts/freesurfer.sh"
